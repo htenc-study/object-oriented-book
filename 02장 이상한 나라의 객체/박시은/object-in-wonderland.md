@@ -22,7 +22,7 @@
 ```
 const person = {
   name: "시은",
-  age: 30,
+  age: 27,
   job: "developer"
 };
 ```
@@ -119,6 +119,7 @@ public interface CodeGroupRepository extends JpaRepository<CodeGroupEntity, Long
   **소프트웨어 객체의 특성**
 - 현실에서는 수동적인 존재가  
   소프트웨어 객체로 구현되면 **능동적으로 변한다.**
+
 
 
 
