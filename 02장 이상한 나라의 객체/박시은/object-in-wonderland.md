@@ -19,13 +19,28 @@
 - 객체의 상태를 구성하는 **모든 특징**
 - 프로퍼티의 **이름은 정적**
 - 프로퍼티의 **값은 동적**
-
-
+```
+const person = {
+  name: "시은",
+  age: 30,
+  job: "developer"
+};
+```
 
 ## 링크(Link)
 - 객체와 객체 사이에 맺어진 **의미 있는 연결**
 - 한 객체가 다른 객체의 **식별자를 알고 있는 것**
+```
+const user = {
+  id: 1,
+  name: "시은"
+};
 
+const order = {
+  orderId: 101,
+  userId: user.id   // 🔗 User와의 링크 (식별자를 알고 있음)
+};
+```
 
 ## 프로퍼티 vs 속성
 - 프로퍼티는 객체의 상태를 표현하는 개념
@@ -42,39 +57,61 @@
 ## 캡슐화(Encapsulation)
 - 객체의 상태를 **외부에 노출시키지 않는 것**
 - 객체의 **자율성을 높이고**, 협력을 단순하고 유연하게 만든다.
+```
+public void addCode(CodeEntity code) {
+    if (code == null) return;
+    codes.add(code);
+    code.setGroup(this);
+}
 
-
+public void removeCode(CodeEntity code) {
+    if (code == null) return;
+    codes.remove(code);
+    code.setGroup(null);
+}
+```
 
 ## 식별자(Identifier)
 - 객체를 서로 구별할 수 있는 **특정한 프로퍼티**
 
-
-
 ## 쿼리(Query)
 - 객체의 상태를 **조회하는 작업**
 - 객체의 상태를 변경하지 않는다.
-
-
+```
+public int getBalance() {
+    return balance;
+}
+```
 
 ## 명령(Command)
 - 객체의 상태를 **변경하는 작업**
-
+```
+public void deposit(int amount) {
+    this.balance += amount;
+}
+```
 
 ## 상태 중심 설계의 문제점
 - 상태를 먼저 결정하고 행동을 나중에 결정하는 방식
-  - 캡슐화가 저해된다.
-  - 객체를 협력자가 아닌 **고립된 존재**로 만든다.
-  - 객체의 **재사용성이 저하**된다.
-
-
+- 캡슐화가 저해된다.
+- 객체를 협력자가 아닌 **고립된 존재**로 만든다.
+- 객체의 **재사용성이 저하**된다.
 
 ## 객체의 책임
 - 객체의 적합성을 결정하는 것은 **상태가 아니라 행동**이다.
 
-
 ## 추상화(Abstraction)
 - 실제 사물에서 자신이 원하는 특징만 취하고  
   **불필요한 부분을 제거하여 핵심만 표현**하는 행위
+```
+public interface CodeGroupRepository extends JpaRepository<CodeGroupEntity, Long>, CodeGroupLookupRepository {
+    boolean existsByGroupCode(String groupCode);
+
+    Optional<CodeGroupEntity> findByGroupCode(String groupCode);
+
+    List<CodeGroupEntity> findAllByOrderBySortOrderAsc();
+}
+```
 
 
 ## 의인화(Anthropomorphism)
@@ -82,6 +119,7 @@
   **소프트웨어 객체의 특성**
 - 현실에서는 수동적인 존재가  
   소프트웨어 객체로 구현되면 **능동적으로 변한다.**
+
 
 
 
