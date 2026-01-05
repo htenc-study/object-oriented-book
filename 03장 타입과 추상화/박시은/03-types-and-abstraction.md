@@ -16,7 +16,31 @@
 
 - 추상화의 **수준, 이익, 가치는 목적에 의존적**이다.
 
+```
+public class Door {
 
+    private boolean locked;
+    private boolean opened;
+
+    public void open() {
+        if (locked) {
+            throw new IllegalStateException("문이 잠겨 있습니다.");
+        }
+        this.opened = true;
+    }
+
+    public void close() {
+        this.opened = false;
+    }
+
+    public void lock() {
+        if (opened) {
+            throw new IllegalStateException("열린 문은 잠글 수 없습니다.");
+        }
+        this.locked = true;
+    }
+}
+```
 ## 개념
 
 - **공통점을 기반으로 객체들을 묶기 위한 그릇**
@@ -61,3 +85,4 @@
 ## 동적 모델과 정적 모델
 - 동적 모델 : 객체들의 동작과 흐름을 설명 (ex. 시퀀스 다이어그램)
 - 정적 모델 : 시스템의 구조를 설명 (ex. 클래스 다이어그램)
+
