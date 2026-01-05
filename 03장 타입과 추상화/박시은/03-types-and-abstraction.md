@@ -76,6 +76,17 @@ public class Door {
 ## 일반화/특수화 관계
 - 일반화/특수화 관계를 결정하는 것은 객체의 행동이다.
 - 일반적인 타입은 특수한 타입보다 외연의 크기는 더 크고 행동의 수는 더 적다.
+```
+public interface Door {
+    void open();
+    void close();
+}
+
+public interface RefrigeratorDoor extends Door {
+    void warnIfOpenTooLong();
+    void maintainTemperature();
+}
+```
 
 ## 슈퍼타입과 서브타입
 - 슈퍼타입 : 좀 더 일반적인 타입
@@ -85,4 +96,3 @@ public class Door {
 ## 동적 모델과 정적 모델
 - 동적 모델 : 객체들의 동작과 흐름을 설명 (ex. 시퀀스 다이어그램)
 - 정적 모델 : 시스템의 구조를 설명 (ex. 클래스 다이어그램)
-
